@@ -121,7 +121,7 @@
             // 1. Username: required, min 3 chars
             if (empty($username)) {
                 $errors['username'] = 'Username is required';
-            } elseif (strlen($username < 3)) {
+            } elseif (strlen($username) < 3) {
                 $errors['username'] = 'Username must be at least 3 characters';
             }
         
@@ -135,7 +135,7 @@
             // 3. Password: required, min 6 chars
             if (empty($password)) {
                 $errors['password'] = 'Password is required';
-            } elseif (strlen($password < 6)) {
+            } elseif (strlen($password) < 6) {
                 $errors['password'] = 'Password must be at least 6 characters';
             }
         
@@ -148,7 +148,7 @@
         
             // ============ IF NO ERRORS, PROCESS THE DATA ============
             if (empty($errors)) {
-                password_hash($password, PASSWORD_DEFAULT);
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         
                 $success = true;
             }
